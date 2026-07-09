@@ -1,0 +1,47 @@
+.load-stepper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.load-stepper-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--text);
+  font-size: 1.6rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.load-stepper-btn--add {
+  background: var(--accent);
+  color: var(--accent-text);
+  border: none;
+}
+
+.load-stepper-btn:active {
+  transform: scale(0.94);
+}
+
+.load-stepper-value {
+  min-width: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.load-stepper-value .display {
+  font-size: 1.8rem;
+}
+
+.load-stepper-unit {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
