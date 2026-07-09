@@ -48,6 +48,7 @@ export default function ExerciseCard({ exercicio, carga, setsConcluidos, onCarga
         <VideoModal
           titulo={exercicio.nome}
           url={videoUrl}
+          youtubeUrl={exercicio.youtubeUrl}
           dicas={exercicio.dicas}
           onClose={() => setVideoAberto(false)}
         />
