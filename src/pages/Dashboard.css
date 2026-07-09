@@ -1,0 +1,51 @@
+.dashboard-saudacao {
+  display: block;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+.dashboard-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dashboard-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  color: var(--text);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 6px;
+  background: var(--accent);
+}
+
+.dashboard-card-nome {
+  font-size: 1.4rem;
+}
+
+.dashboard-card-foco {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+.dashboard-card-count {
+  color: var(--steel);
+  font-size: 0.8rem;
+  margin-top: 8px;
+  font-weight: 600;
+}
