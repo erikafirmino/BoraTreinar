@@ -1,0 +1,70 @@
+.exercise-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.exercise-card--done {
+  border-left-color: var(--success);
+  opacity: 0.75;
+}
+
+.exercise-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.exercise-card-nome {
+  font-size: 1.05rem;
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
+.exercise-card-meta {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.exercise-card-video-btn {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  color: var(--steel);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.exercise-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.exercise-card-set-btn {
+  flex: 1;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 12px 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.exercise-card-set-btn:disabled {
+  background: transparent;
+  border-color: var(--success);
+  color: var(--success);
+}
