@@ -1,0 +1,45 @@
+.aviso-seguranca {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--steel);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.aviso-seguranca-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.aviso-seguranca-seta {
+  color: var(--text-dim);
+  font-size: 0.7rem;
+  flex: none;
+}
+
+.aviso-seguranca-corpo {
+  padding: 0 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.aviso-seguranca-corpo p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.aviso-seguranca-corpo strong {
+  color: var(--text);
+}
