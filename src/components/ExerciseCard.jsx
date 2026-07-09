@@ -28,7 +28,7 @@ export default function ExerciseCard({ exercicio, carga, setsConcluidos, onCarga
           <span className="exercise-card-meta">Meta: {meta}</span>
         </div>
         <button className="exercise-card-video-btn" onClick={abrirVideo}>
-          ▶ Vídeo
+          💡 Como fazer
         </button>
       </div>
 
@@ -48,6 +48,7 @@ export default function ExerciseCard({ exercicio, carga, setsConcluidos, onCarga
         <VideoModal
           titulo={exercicio.nome}
           url={videoUrl}
+          dicas={exercicio.dicas}
           onClose={() => setVideoAberto(false)}
         />
       )}
