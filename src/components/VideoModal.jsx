@@ -1,6 +1,9 @@
+import { extrairIdYoutube } from '../utils/youtube';
 import './VideoModal.css';
 
-export default function VideoModal({ titulo, url, dicas, onClose }) {
+export default function VideoModal({ titulo, url, youtubeUrl, dicas, onClose }) {
+  const youtubeId = extrairIdYoutube(youtubeUrl);
+
   return (
     <div className="video-modal-backdrop" onClick={onClose}>
       <div className="video-modal-sheet" onClick={(e) => e.stopPropagation()}>
@@ -18,6 +21,16 @@ export default function VideoModal({ titulo, url, dicas, onClose }) {
             playsInline
             className="video-modal-player"
           />
+        ) : youtubeId ? (
+          <div className="video-modal-youtube-wrap">
+            <iframe
+              className="video-modal-youtube"
+              src={`https://www.youtube-nocookie.com/embed/${youtubeId}`}
+              title={titulo}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
         ) : (
           <p className="video-modal-empty">Vídeo demonstrativo ainda não cadastrado — mas as dicas de execução já valem!</p>
         )}
