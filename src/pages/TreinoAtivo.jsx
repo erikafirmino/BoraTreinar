@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import ExerciseCard from '../components/ExerciseCard';
 import RestTimer from '../components/RestTimer';
+import AvisoSeguranca from '../components/AvisoSeguranca';
 import {
   fetchTreinos,
   fetchHistoricoUsuario,
@@ -35,23 +36,39 @@ export default function TreinoAtivo() {
   const [timerAberto, setTimerAberto] = useState(false);
   const [carregando, setCarregando] = useState(true);
   const [salvando, setSalvando] = useState(false);
+  const [erro, setErro] = useState(null);
 
   useEffect(() => {
     async function carregar() {
-      const [todosTreinos, historico] = await Promise.all([
-        fetchTreinos(),
-        fetchHistoricoUsuario(user.uid),
-      ]);
-      const atual = todosTreinos?.find((t) => t.id === treinoId);
-      setTreino(atual || null);
+      setErro(null);
+      try {
+        const todosTreinos = await fetchTreinos();
 
-      const ultimasCargas = extrairUltimasCargas(historico, treinoId);
-      const cargasIniciais = {};
-      atual?.exercicios.forEach((ex) => {
-        cargasIniciais[ex.id] = ultimasCargas[ex.id] ?? 0;
-      });
-      setCargas(cargasIniciais);
-      setCarregando(false);
+        // O histórico é "nice to have" (pré-preenche a carga com a última usada).
+        // Se essa consulta falhar — ex.: falta um índice composto no Firestore —
+        // não deixamos isso travar a tela inteira, só seguimos sem pré-preencher.
+        let historico = [];
+        try {
+          historico = await fetchHistoricoUsuario(user.uid);
+        } catch (errHistorico) {
+          console.warn('Não foi possível carregar o histórico:', errHistorico);
+        }
+
+        const atual = todosTreinos?.find((t) => t.id === treinoId);
+        setTreino(atual || null);
+
+        const ultimasCargas = extrairUltimasCargas(historico, treinoId);
+        const cargasIniciais = {};
+        atual?.exercicios.forEach((ex) => {
+          cargasIniciais[ex.id] = ultimasCargas[ex.id] ?? 0;
+        });
+        setCargas(cargasIniciais);
+      } catch (err) {
+        console.error('Erro ao carregar treino:', err);
+        setErro('Não foi possível carregar o treino. Verifique sua conexão e tente novamente.');
+      } finally {
+        setCarregando(false);
+      }
     }
     carregar();
   }, [treinoId, user.uid]);
@@ -82,6 +99,15 @@ export default function TreinoAtivo() {
     return <div className="spinner-wrap">Carregando treino…</div>;
   }
 
+  if (erro) {
+    return (
+      <div className="page">
+        <p>{erro}</p>
+        <button className="btn-ghost" onClick={() => navigate('/')}>Voltar</button>
+      </div>
+    );
+  }
+
   if (!treino) {
     return (
       <div className="page">
@@ -103,6 +129,8 @@ export default function TreinoAtivo() {
         </div>
         <button className="btn-ghost treino-ativo-voltar" onClick={() => navigate('/')}>Voltar</button>
       </div>
+
+      <AvisoSeguranca />
 
       <div className="treino-ativo-progresso">
         <div className="treino-ativo-progresso-barra">
