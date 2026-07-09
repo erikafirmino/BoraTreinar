@@ -45,3 +45,33 @@
   text-align: center;
   padding: 24px 0;
 }
+
+.video-modal-dicas {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.video-modal-dicas-titulo {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+.video-modal-dicas ul {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.video-modal-dicas li {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--text);
+}
